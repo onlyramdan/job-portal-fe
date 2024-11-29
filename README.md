@@ -1,1 +1,1 @@
-# LinovHR-UI-Skeleton
+# Job Portal FE
