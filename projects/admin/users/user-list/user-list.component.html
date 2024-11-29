@@ -1,0 +1,25 @@
+<div class="card bg-white shadow-2 border-round">
+    <div class="flex justify-content-between">
+        <h5>{{ title }}</h5>
+        <button pButton class="p-button p-button-sm" type="button" label="Add" icon="fa fa-plus"
+            (click)="onAdd()"></button>
+    </div>
+    <hr>
+    <div class="flex flex-column my-2">
+        <app-search (search)="onSearch($event)" [isFilter]="false">
+        </app-search>
+        <app-table #TableComponent [isSelectable]="false" [isStatus]="true" [columMap]="columMap" uri="users/pages"
+            [kebabOption]="kebabOption" (action)="tableAction($event)">
+        </app-table>
+    </div>
+</div>
+
+<p-dialog [(visible)]="showDeleteModal" header="Confirm Deletion" [closable]="false" [modal]="true"
+    [style]="{width: '400px'}">
+    <p>Apakah yakin untuk hapus lokasi ?<br><strong>{{ selectedUser?.username }}</strong></p>
+    <div class="flex justify-content-end gap-2">
+        <button pButton label="Cancel" icon="fa fa-times" class="p-button-secondary"
+            (click)="showDeleteModal = false"></button>
+        <button pButton label="Delete" icon="fa fa-trash" class="p-button-primay" (click)="onDeleteCompany()"></button>
+    </div>
+</p-dialog>

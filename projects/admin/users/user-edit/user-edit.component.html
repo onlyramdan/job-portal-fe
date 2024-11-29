@@ -1,0 +1,66 @@
+<div class="card bg-white shadow-2 border-round">
+    <div class="flex justify-content-between">
+        <h5>{{ title }}</h5>
+    </div>
+    <hr>
+
+    <form [formGroup]="updateForm">
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6 ">
+                <div class="field mb-4">
+                    <label for="username" class="block text-600 font-medium mb-2">Username</label>
+                    <input id="username" type="text" formControlName="username"
+                        class="w-full p-inputtext p-component border-round" required>
+                    <div *ngIf="updateForm.get('username')?.touched && updateForm.get('username')?.invalid">
+                        <small *ngIf="updateForm.get('username')?.errors?.['required']" class="p-error">
+                            Username is required.
+                        </small>
+                        <small *ngIf="updateForm.get('username')?.errors?.['minlength']" class="p-error">
+                            Minimum 3 characters required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="field mb-4">
+                    <label for="email" class="block text-600 font-medium mb-2">Email</label>
+                    <input id="email" type="email" formControlName="email"
+                        class="w-full p-inputtext p-component border-round" required>
+                    <div *ngIf="updateForm.get('email')?.touched && updateForm.get('email')?.invalid">
+                        <small *ngIf="updateForm.get('email')?.errors?.['required']" class="p-error">
+                            Email is required.
+                        </small>
+                        <small *ngIf="updateForm.get('email')?.errors?.['email']" class="p-error">
+                            Invalid email address.
+                        </small>
+                    </div>
+                </div>
+                <div class="field mb-4">
+                    <label for="statusSwitch" class="block text-600 font-medium mb-2">Status</label>
+                    <p-inputSwitch formControlName="status"></p-inputSwitch>
+                </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-6 ">
+                <div class="field mb-4">
+                    <label for="confirmPassword" class="block text-600 font-medium mb-2">Role</label>
+                    <app-lov [chaining]="true" uri="roles" label="choose role" (selected)="onSelectRole($event)"
+                    [value]="updateForm.get('roleId').value"
+                    [styleClass]="
+                    'ext-base text-color surface-overlay border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full'
+                " [ngClass]="{
+                    'border-red': updateForm.get('roleId')?.invalid &&
+                    (updateForm.get('roleId')?.dirty || updateForm.get('roleId')?.touched)
+                }">
+                    </app-lov>
+                    <small *ngIf="updateForm.get('roleId')?.invalid && updateForm.get('roleId')?.touched"
+                        class="p-error">
+                        Input role is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="flex gap-2 align-items-start justify-content-end my-2">
+        <button pButton class="p-button-secondary" icon="pi pi-arrow-left" label="Back" (click)="onClose()"> </button>
+        <button pButton class="p-button-primary" icon="fa-solid fa-save" label="Update" (click)="onUpdate()"> </button>
+    </div>
+</div>

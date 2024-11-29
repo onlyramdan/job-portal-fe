@@ -1,0 +1,15 @@
+<div class="sidebar h-screen w-15rem shadow-2 bg-white">
+    <ul class="list-none p-3 m-0">
+      <li
+        *ngFor="let item of sidebarItems"
+        class="flex align-items-center text-color-secondary gap-3 p-2 hover:bg-gray-100 border-round mx-1 my-3"
+        [routerLink]="item.route"
+        routerLinkActive="font-bold bg-gray-100"
+      >
+      <div class="flex align-items-center gap-3">
+        <i [class]="item.icon"></i>
+        <span>{{ item.name }}</span>
+      </div>
+      </li>
+    </ul>
+  </div>

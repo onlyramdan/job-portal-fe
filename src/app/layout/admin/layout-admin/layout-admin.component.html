@@ -1,0 +1,18 @@
+
+<div class="flex flex-column h-screen bg-secondary bg-blue-100">
+    <div class="sticky top-0 z-10">
+     <app-navbar (toggleSidebar)="toggleSidebar()"></app-navbar>
+    </div>
+    <div class="flex flex-1 overflow-hidden">
+      <div class="lg:block bg-primary h-full sticky top-0" [ngClass]="sidebarVisible ? '' : 'hidden'">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="flex-1 mx-auto overflow-auto border-round shadow-lg">
+        <div class="container p-4 w-auto">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+  <flash-message-success></flash-message-success>
+  <flash-message-error></flash-message-error>

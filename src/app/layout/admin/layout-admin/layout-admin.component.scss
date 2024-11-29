@@ -1,0 +1,30 @@
+.layout {
+    display: flex;
+    height: 100vh; // Full viewport height.
+
+    .sidebar {
+      width: 15rem; // Fixed width for the sidebar.
+      height: 100%; // Full height to match layout.
+      background-color: var(--primary-100); // Example color.
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional shadow for depth.
+      flex-shrink: 0; // Prevent shrinking when space is limited.
+    }
+
+    .main-content {
+      display: flex;
+      flex-direction: column; // Stack navbar and content vertically.
+      flex-grow: 1; // Take up remaining horizontal space.
+      overflow: hidden; // Prevent overflow issues.
+
+      app-navbar {
+        flex-shrink: 0; // Navbar stays fixed at the top of the main content.
+        width: 100%;
+        z-index: 1000; // Ensure it stays above other elements.
+      }
+
+      .content {
+        flex-grow: 1; // Content takes up the remaining vertical space.
+        overflow-y: auto; // Allow scrolling if content overflows.
+      }
+    }
+  }

@@ -1,0 +1,82 @@
+<div class="card bg-white shadow-2 border-round">
+    <div class="flex justify-content-between">
+        <h5>{{ title }}</h5>
+        <button pButton class="p-button p-button-sm" type="button" label="Add" icon="fa fa-plus"
+            (click)="onAdd()"></button>
+    </div>
+    <hr>
+    <div class="flex flex-column my-2">
+        <app-search (search)="onSearch($event)" [isFilter]="false">
+        </app-search>
+        <app-table #TableComponent [isSelectable]="false" [isStatus]="true" [columMap]="columMap" uri="locations/pages"
+            [kebabOption]="kebabOption" (action)="tableAction($event)">
+        </app-table>
+    </div>
+</div>
+
+<p-dialog [(visible)]="showDeleteModal" header="Confirm Deletion" [closable]="false" [modal]="true"
+    [style]="{width: '400px'}">
+    <p>Apakah yakin untuk hapus lokasi ?<br><strong>{{ selectedLocation?.name }}</strong></p>
+    <div class="flex justify-content-end gap-2">
+        <button pButton label="Cancel" icon="fa fa-times" class="p-button-secondary"
+            (click)="showDeleteModal = false"></button>
+        <button pButton label="Delete" icon="fa fa-trash" class="p-button-primay" (click)="onDeleteCompany()"></button>
+    </div>
+</p-dialog>
+
+<p-dialog [(visible)]="showAddEditModal"
+          [header]="isEditing ? 'Edit Location' : 'Add Location'"
+          [closable]="true"
+          [modal]="true"
+          [style]="{width: '500px'}">
+    <form [formGroup]="locationForm" (ngSubmit)="onSubmit()">
+        <div class="field my-2">
+            <label for="code" class="block text-sm font-medium mb-1">Code</label>
+            <input
+                id="code"
+                type="text"
+                formControlName="code"
+                pInputText
+                class="w-full">
+            <small *ngIf="locationForm.get('code')?.invalid && locationForm.get('code')?.touched" class="p-error">
+                Code is required.
+            </small>
+        </div>
+
+        <div class="field my-2">
+            <label for="name" class="block text-sm font-medium mb-1">Name</label>
+            <input
+                id="name"
+                type="text"
+                formControlName="name"
+                pInputText
+                class="w-full">
+            <small *ngIf="locationForm.get('name')?.invalid && locationForm.get('name')?.touched" class="p-error">
+                Name is required.
+            </small>
+        </div>
+
+        <div class="field my-2" *ngIf="isEditing">
+            <label for="statusSwitch" class="block text-sm font-medium mb-1">Status</label>
+            <p-inputSwitch formControlName="status"></p-inputSwitch>
+        </div>
+
+        <div class="flex justify-content-end gap-2 mt-4">
+            <button
+                pButton
+                label="Cancel"
+                icon="fa fa-times"
+                class="p-button-secondary"
+                type="button"
+                (click)="showAddEditModal = false">
+            </button>
+            <button
+                pButton
+                label="Save"
+                icon="fa fa-save"
+                class="p-button-primary"
+                type="submit">
+            </button>
+        </div>
+    </form>
+</p-dialog>

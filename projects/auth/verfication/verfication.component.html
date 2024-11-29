@@ -1,0 +1,45 @@
+<div class="text-center mb-5">
+    <h1 class="text-primary">Verify Your Email</h1>
+    <p class="text-600">Please enter the code sent to your email to verify your account.</p>
+</div>
+
+<form [formGroup]="verificationForm" (ngSubmit)="onVerify()">
+    <div class="field mb-4">
+        <label for="verification" class="block text-600 font-medium mb-2">Verification Code</label>
+        <input id="verification" type="text" formControlName="verificationCode"
+            class="w-full p-inputtext p-component border-round" maxlength="6" required>
+        <div
+            *ngIf="verificationForm.get('verificationCode')?.touched && verificationForm.get('verificationCode')?.invalid">
+            <small *ngIf="verificationForm.get('verificationCode')?.errors?.['required']" class="p-error">
+                Verification code is required.
+            </small>
+            <small *ngIf="verificationForm.get('verificationCode')?.errors?.['minlength']" class="p-error">
+                Code must be 6 digits.
+            </small>
+        </div>
+    </div>
+
+    <div class="flex justify-content-center align-items-center mb-4">
+        <button type="submit" pButton pRipple class="p-button w-full flex justify-content-center align-items-center">
+            Verify
+        </button>
+    </div>
+</form>
+
+<div class="text-center mt-3">
+    <span class="text-600">Didn't receive the code?</span>
+    <br>
+    <a class="text-primary font-medium cursor-pointer" (click)="onResendCode()">Resend Code</a>
+</div>
+
+<p-dialog class="message-error" [(visible)]="isMessageSuccess" [style]="{ width: '476px' }">
+    <div class="c-icons approved-icon"></div>
+    <div class="text-center">
+        <p class="text-xl font-bold mb-2" style="color:var(--surface-700);margin:0;">{{title}}</p>
+        <p class="text-base font-normal" style="color:var(--surface-500)">{{ message }}</p>
+    </div>
+
+<ng-template pTemplate="footer">
+    <button type="button" pButton label="Login" (click)="clickBack()" [style]="{ width: '134px' }"></button>
+</ng-template>
+</p-dialog>

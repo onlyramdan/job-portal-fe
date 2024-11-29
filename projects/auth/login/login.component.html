@@ -1,0 +1,48 @@
+<div class="text-center mb-5">
+    <h1 class="text-primary">Find Your Vacancy</h1>
+    <p class="text-600">Login to your account and get started</p>
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="field mb-4">
+        <label for="username" class="block text-600 font-medium mb-2">Username</label>
+        <input id="username" type="text" formControlName="username" class="w-full p-inputtext p-component border-round"
+            required>
+        <div *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">
+            <small *ngIf="loginForm.get('username')?.errors?.['required']" class="p-error">
+                Username is required.
+            </small>
+            <small *ngIf="loginForm.get('username')?.errors?.['minlength']" class="p-error">
+                Minimum 3 characters required.
+            </small>
+        </div>
+    </div>
+
+    <div class="field mb-4">
+        <label for="password" class="block text-600 font-medium mb-2">Password</label>
+        <input type="password" formControlName="password" id="password" class="w-full p-inputtext p-component border-round"
+             required>
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+            <small *ngIf="loginForm.get('password')?.errors?.['required']" class="p-error">
+                Password is required.
+            </small>
+            <small *ngIf="loginForm.get('password')?.errors?.['minlength']" class="p-error">
+                Password must be at least 6 characters long.
+            </small>
+        </div>
+    </div>
+
+    <div class="flex justify-content-center align-items-center mb-4">
+        <button type="submit" pButton pRipple class="p-button w-full flex justify-content-center align-items-center">
+            Login
+        </button>
+    </div>
+</form>
+
+<div class="text-center">
+    <span class="text-600">Don't have an account? </span>
+    <br>
+    <a class="text-primary font-medium cursor-pointer" routerLink='/auth/register'>Register Now</a>
+</div>
+
+
