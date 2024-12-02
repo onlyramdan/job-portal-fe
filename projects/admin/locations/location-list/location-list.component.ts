@@ -80,7 +80,7 @@ export class LocationListComponent {
         this.selectedLocation = data;
     }
 
-    onDeleteCompany() {
+    onDeleteLocation() {
         if (this.selectedLocation) {
             this.loactionService.delete(this.selectedLocation.id).subscribe({
                 next: () => {
