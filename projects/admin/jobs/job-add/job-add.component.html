@@ -1,0 +1,65 @@
+<div class="card bg-white shadow-2 border-round">
+    <h5>{{ title }}</h5>
+    <hr>
+    <form [formGroup]="jobForm">
+        <div class="field mb-4">
+            <label for="title" class="block text-600 font-medium mb-2">
+                Job Title <span class="text-red-500">*</span>
+            </label>
+            <input id="title" type="text" formControlName="title" placeholder="Enter job title"
+                class="w-full p-inputtext p-component border-round" required>
+            <div *ngIf="jobForm.get('title')?.touched && jobForm.get('title')?.invalid">
+                <small *ngIf="jobForm.get('title')?.errors?.['required']" class="p-error">
+                    Job Title is required.
+                </small>
+            </div>
+        </div>
+        <div formArrayName="jobDescriptions" class="field mb-4 border-gray border-round p-2">
+            <div class="flex justify-content-between align-items-center mb-3 mt-3">
+                <label class="block text-600 font-medium mb-2">Job Descriptions</label>
+                <button type="button" pButton class="p-button p-button-sm p-button-success" label="Add"
+                    (click)="addJobDescription()">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div *ngFor="let desc of jobDescriptions.controls; let i = index;" [formGroupName]="i" class="mb-3">
+                <div class="field mb-2">
+                    <label for="title_desc_{{ i }}" class="block text-600 font-medium mb-1">Title</label>
+                    <input id="title_desc_{{ i }}" type="text" formControlName="title"
+                        placeholder="Enter description title" class="w-full p-inputtext p-component border-round">
+                </div>
+                <div class="field">
+                    <label for="desc_{{ i }}" class="block text-600 font-medium mb-1">Description</label>
+                    <textarea id="desc_{{ i }}" formControlName="description" rows="3" placeholder="Enter description"
+                        class="w-full p-inputtext p-component border-round"></textarea>
+                </div>
+                <div class="flex justify-content-end ">
+                    <button type="button" pButton class="p-button p-button-sm p-button-danger" icon="fa fa-trash"
+                        (click)="removeJobDescription(i)">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div formArrayName="jobSpecifications" class="field mb-4 border-gray border-round p-2">
+            <div class="flex justify-content-between align-items-center mb-3 mt-3">
+                <label class="block text-600 font-medium">Job Specifications</label>
+                <button type="button" pButton class="p-button p-button-sm p-button-success" icon="fa fa-plus" label="Add"
+                 (click)="addJobSpecification()">
+                </button>
+            </div>
+            <div *ngFor="let spec of jobSpecifications.controls; let i = index;" [formGroupName]="i" class="flex justify-content-between align-items-center gap-3 mb-3">
+                <input id="spec_{{ i }}" type="text" formControlName="specification" placeholder="Enter specification"
+                    class="w-full p-inputtext p-component border-round">
+                <button type="button" pButton class="p-button p-button-sm p-button-danger" icon="fa fa-trash"
+                    (click)="removeJobSpecification(i)">
+                </button>
+            </div>
+
+        </div>
+    </form>
+    <div class="flex gap-2 align-items-start justify-content-end my-2">
+        <button pButton class="p-button-secondary" icon="pi pi-arrow-left" label="Back" (click)="onClose()"> </button>
+        <button pButton class="p-button-primary" icon="fa-solid fa-save" label="Save" (click)="onSave()"> </button>
+    </div>
+</div>
