@@ -19,6 +19,11 @@ const web: string = localStorage.getItem('web') ?? 'admin';
         RouterModule.forRoot(
             [
                 {
+                    path: '',
+                    redirectTo: 'auth',
+                    pathMatch: 'full'
+                },
+                {
                     path: 'auth',
                     component: LayoutAuthComponent,
                     loadChildren: () =>

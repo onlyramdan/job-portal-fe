@@ -259,6 +259,7 @@ export class TableComponent {
             ].includes(status),
             'span-active-secondary': [
                 'active',
+                'ongoing',
                 'hadir',
                 'approved',
                 'publish',

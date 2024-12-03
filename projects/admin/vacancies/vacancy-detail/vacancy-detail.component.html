@@ -1,0 +1,67 @@
+<div class="card bg-white shadow-2 border-round">
+    <h5>{{ title }}</h5>
+    <hr>
+    <div class="grid">
+        <div class="col-12 md:col-6 lg:col-6">
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Job Title</label>
+                <p>{{ vacancy?.jobTitle }}</p>
+            </div>
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Location</label>
+                <p>{{ vacancy?.location }}</p>
+            </div>
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Employee Type</label>
+                <p>{{ vacancy?.employeeType }}</p>
+            </div>
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Experience Level</label>
+                <p>{{ vacancy?.experienceLevel }}</p>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-6">
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Min Salary</label>
+                <p>{{ vacancy?.minSalary | currency:'Rp. ':'symbol':'1.0-0' }}</p>
+            </div>
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Max Salary</label>
+                <p>{{ vacancy?.maxSalary | currency:'Rp. ':'symbol':'1.0-0' }}</p>
+            </div>
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Application Deadline</label>
+                <p>{{ vacancy?.applicationDeadline | date: 'dd-MM-yyyy' }}</p>
+            </div>
+            <div class="field mb-3">
+                <label class="block text-sm font-medium text-gray-700">Overview</label>
+                <p>{{ vacancy?.overview }}</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="field mt-3">
+        <label class="block text-sm font-medium text-gray-700">Specifications</label>
+        <ul class="list-disc pl-4">
+            <li *ngFor="let spec of specifications">
+                {{ spec?.specification }}
+            </li>
+        </ul>
+    </div>
+
+    <div class="field mt-3">
+        <label class="block text-sm font-medium text-gray-700">Job Descriptions</label>
+        <ul class="list-disc pl-4">
+            <li *ngFor="let desc of jobDescriptions">
+                <strong>{{ desc?.titleDesc }}:</strong> {{ desc?.description }}
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="flex justify-content-end align-items-center gap-2 mt-3">
+        <button pButton label="Back" icon="fa fa-arrow-left" type="button" class="p-button-secondary" (click)="onBack()"></button>
+    </div>
+</div>

@@ -1,4 +1,60 @@
 <div class="card bg-white shadow-2">
-    <h5>{{ title }}</h5>
+    <div class="flex justify-content-between align-items-center">
+        <h5>{{ title }}</h5>
+        <div class="text-500">
+            <i class="fa fa-calendar-alt mr-2"></i>
+            {{ currentDate }}
+        </div>
+    </div>
     <hr>
+    <div class="card p-4 bg-primary-100">
+        <p>Selamat datang di Dashboard! Pilih menu di sidebar untuk mulai.</p>
+    </div>
+
+    <div class="stats-grid grid">
+        <div class="stat-card col-12 md:col-6 lg:col-3">
+            <div class="card-content">
+                <i class="fa fa-briefcase icon"></i>
+                <div>
+                    <h4>Vacancy Management</h4>
+                    <p>Manage job vacancies.</p>
+                    <button pButton label="Vacancies" icon="fa fa-arrow-right"
+                        class="p-button-sm p-button-primary" (click)="navigateTo('vacancies')"></button>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card col-12 md:col-6 lg:col-3">
+            <div class="card-content">
+                <i class="fa fa-briefcase icon"></i>
+                <div>
+                    <h4>Job Management</h4>
+                    <p>Manage job</p>
+                    <button pButton label="Jobs" icon="fa fa-arrow-right"
+                        class="p-button-sm p-button-primary" (click)="navigateTo('jobs')"></button>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card col-12 md:col-6 lg:col-3">
+            <div class="card-content">
+                <i class="fa fa-users icon"></i>
+                <div>
+                    <h4>User Management</h4>
+                    <p>Manage system users.</p>
+                    <button pButton label="Users" icon="fa fa-arrow-right"
+                        class="p-button-sm p-button-primary" (click)="navigateTo('users')"></button>
+                </div>
+            </div>
+        </div>
+        <div class="stat-card col-12 md:col-6 lg:col-3">
+            <div class="card-content">
+                <i class="fa fa-map-marker icon"></i>
+                <div>
+                    <h4>Location Management</h4>
+                    <p>Manage office locations.</p>
+                    <button pButton label="Locations" icon="fa fa-arrow-right"
+                        class="p-button-sm p-button-primary" (click)="navigateTo('locations')"></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

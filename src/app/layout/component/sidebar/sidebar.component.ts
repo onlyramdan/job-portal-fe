@@ -22,7 +22,7 @@ export class SidebarComponent {
             ADM:[
                 { name: 'Dashboard', route: '/admin/dashboard', icon: 'fa fa-home' },
                 { name: 'Vacancy Management', route: '/admin/vacancies', icon: 'fa fa-briefcase' },
-                { name: 'Job Management', route: '/admin/job', icon: 'fa-solid fa-briefcase' },
+                { name: 'Job Management', route: '/admin/jobs', icon: 'fa-solid fa-briefcase' },
                 { name: 'User Management', route: '/admin/users', icon: 'fa fa-users'},
                 { name: 'Location Management', route: '/admin/locations', icon: 'fa-solid fa-location-dot' }
             ],

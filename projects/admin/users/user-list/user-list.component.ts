@@ -14,6 +14,7 @@ export class UserListComponent {
     title = "User Mangement"
     showDeleteModal: boolean = false;
     selectedUser: UserResponse;
+    detailModal: boolean = false;
 
     @ViewChild('TableComponent') table: TableComponent;
     body: any;
@@ -65,8 +66,13 @@ export class UserListComponent {
             this.router.navigateByUrl(`admin/users/${data.id}/edit`);
         }
         if(action === 'detail'){
-            this.router.navigateByUrl(`admin/users/${data.id}/detail`);
+            this.getDetailUser(data);
         }
+    }
+
+    getDetailUser(data: UserResponse){
+        this.detailModal = true
+        this.selectedUser = data;
     }
 
     confirmDelete(data: UserResponse) {
@@ -80,7 +86,7 @@ export class UserListComponent {
                 next: () => {
                     this.table.reload();
                     this.messageService.showSuccess(
-                        'Location delete successfully!',
+                        'User delete successfully!',
                         'Delete',
                         false
                     );
@@ -88,7 +94,7 @@ export class UserListComponent {
                 error: (err) => {
                     this.messageService.showError(
                         err.errors.reason[0],
-                        'Location delete Failed!'
+                        'User delete Failed!'
                     );
                 },
                 complete: () => {
